@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.job4j.forum.model.Comment;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.service.PostService;
 
@@ -14,7 +13,7 @@ import java.util.Calendar;
 
 @Controller
 public class PostControl {
-    private PostService service;
+    private final PostService service;
 
     public PostControl(PostService service) {
         this.service = service;
@@ -46,10 +45,4 @@ public class PostControl {
         return "/post";
     }
 
-//    @PostMapping("/post")
-//    public String addComment(@RequestParam("id") int id,
-//                             @ModelAttribute Comment comment) {
-//        this.service.saveComment(id, comment);
-//        return "/post";
-//    }
 }

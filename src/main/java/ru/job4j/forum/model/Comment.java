@@ -14,22 +14,8 @@ public class Comment {
     private String author;
     private Calendar created = Calendar.getInstance();
 
-//
-//    public Comment(String comment, String author, Calendar created) {
-//        this.comment = comment;
-//        this.author = author;
-//        this.created = created;
-//    }
-//
-//    public Comment(String comment, Calendar created) {
-//        this.comment = comment;
-//        this.created = created;
-//    }
-
     public Comment() {
     }
-
-
 
     public int getId() {
         return id;

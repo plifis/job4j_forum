@@ -7,15 +7,11 @@ import ru.job4j.forum.model.Post;
 import ru.job4j.forum.model.User;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
 @Service
 public class PostService {
-//    private MemUserStore storeUsers;
-//    private MemPostStore storePosts;
-//    private MemCommentStore storeComments;
     private final PostRepository storePosts;
     private final CommentRepository storeComments;
     private final UserRepository storeUsers;
