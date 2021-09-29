@@ -7,26 +7,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.forum.Repository.MemUserStore;
+import ru.job4j.forum.Repository.PostRepository;
+import ru.job4j.forum.Repository.UserRepository;
 import ru.job4j.forum.model.User;
+import ru.job4j.forum.service.PostService;
 
 @Controller
 public class RegControl {
-    private final MemUserStore mem;
+    private final PostService service;
 
-    public RegControl(MemUserStore mem) {
-        this.mem = mem;
+    public RegControl(PostService service) {
+        this.service = service;
     }
 
     @PostMapping("/reg")
     public String save(@ModelAttribute User user,
                        Model model) {
-        if (mem.findUserByUsername(user.getName()) != null) {
+        if (service.findUserByName(user.getName()) != null) {
             String errorMessage = "А user with this name is already registered.";
             model.addAttribute("errorMessage", errorMessage);
             return "reg";
         } else {
             user.setPassword(user.getPassword());
-            mem.save(user);
+            service.saveUser(user);
             return "redirect:/login";
         }
     }

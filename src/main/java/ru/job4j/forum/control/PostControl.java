@@ -10,6 +10,8 @@ import ru.job4j.forum.model.Comment;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.service.PostService;
 
+import java.util.Calendar;
+
 @Controller
 public class PostControl {
     private PostService service;
@@ -27,6 +29,7 @@ public class PostControl {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Post post) {
+        post.setCreated(Calendar.getInstance());
         this.service.savePost(post);
         return "redirect:/";
     }
@@ -43,10 +46,10 @@ public class PostControl {
         return "/post";
     }
 
-    @PostMapping("/post")
-    public String addComment(@RequestParam("id") int id,
-                             @ModelAttribute Comment comment) {
-        this.service.saveComment(id, comment);
-        return "/post";
-    }
+//    @PostMapping("/post")
+//    public String addComment(@RequestParam("id") int id,
+//                             @ModelAttribute Comment comment) {
+//        this.service.saveComment(id, comment);
+//        return "/post";
+//    }
 }

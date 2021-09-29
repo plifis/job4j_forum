@@ -31,7 +31,7 @@
         </div>
         <div class="form-group">
             <label>Описание</label>
-            <input type="text" class="form-control" name="desc" value="<c:out value="${post.desc}"/>">
+            <input type="text" class="form-control" name="description" value="<c:out value="${post.description}"/>">
         </div>
         <div class="form-group">
             <label>Дата</label>

@@ -1,12 +1,35 @@
 package ru.job4j.forum.model;
 
+import javax.persistence.*;
 import java.util.Calendar;
+import java.util.Objects;
 
+@Entity
+@Table(name = "comments")
 public class Comment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String comment;
     private String author;
-    private Calendar created;
+    private Calendar created = Calendar.getInstance();
+
+//
+//    public Comment(String comment, String author, Calendar created) {
+//        this.comment = comment;
+//        this.author = author;
+//        this.created = created;
+//    }
+//
+//    public Comment(String comment, Calendar created) {
+//        this.comment = comment;
+//        this.created = created;
+//    }
+
+    public Comment() {
+    }
+
+
 
     public int getId() {
         return id;
@@ -38,5 +61,18 @@ public class Comment {
 
     public void setCreated(Calendar created) {
         this.created = created;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Comment comment1 = (Comment) o;
+        return id == comment1.id && Objects.equals(comment, comment1.comment) && Objects.equals(author, comment1.author) && Objects.equals(created, comment1.created);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, comment, author, created);
     }
 }

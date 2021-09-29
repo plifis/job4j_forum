@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Repository
+//@Repository
 public class MemUserStore {
     private final Map<Integer, User> mem = new HashMap<>();
     private static final AtomicInteger COUNT = new AtomicInteger(0);

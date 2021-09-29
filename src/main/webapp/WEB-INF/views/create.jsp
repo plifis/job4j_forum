@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             <label>Описание</label>
-            <input type="text" class="form-control" name="desc" value="<c:out value="${post.desc}"/>">
+            <input type="text" class="form-control" name="desc" value="<c:out value="${post.description}"/>">
         </div>
         <tr>
             <td colspan='2'><input name="submit" type="submit" value="Сохранить" /></td>

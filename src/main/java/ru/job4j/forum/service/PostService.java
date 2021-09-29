@@ -1,24 +1,27 @@
 package ru.job4j.forum.service;
 
 import org.springframework.stereotype.Service;
-import ru.job4j.forum.Repository.MemCommentStore;
-import ru.job4j.forum.Repository.MemPostStore;
-import ru.job4j.forum.Repository.MemUserStore;
+import ru.job4j.forum.Repository.*;
 import ru.job4j.forum.model.Comment;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.model.User;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
 public class PostService {
-    private MemUserStore storeUsers;
-    private MemPostStore storePosts;
-    private MemCommentStore storeComments;
+//    private MemUserStore storeUsers;
+//    private MemPostStore storePosts;
+//    private MemCommentStore storeComments;
+    private final PostRepository storePosts;
+    private final CommentRepository storeComments;
+    private final UserRepository storeUsers;
 
 
-    public PostService(MemUserStore storeUsers, MemPostStore storePosts, MemCommentStore storeComments) {
+    public PostService(UserRepository storeUsers, PostRepository storePosts, CommentRepository storeComments) {
         this.storePosts = storePosts;
         this.storeUsers = storeUsers;
         this.storeComments = storeComments;
@@ -26,31 +29,40 @@ public class PostService {
 
 
     public User findUserByName(String name) {
-        return this.storeUsers.findUserByUsername(name);
-    }
-
-
-    public Collection<User> getAllUsers() {
-        return storeUsers.getAll();
-    }
-
-    public Collection<Post> getAllPosts() {
-        return storePosts.getAll();
+        return this.storeUsers.findUserByName(name);
     }
 
     public Post findPostById(int id) {
-        return this.storePosts.getPostById(id);
+        return this.storePosts.findById(id).get();
     }
 
-    public void savePost(Post post) {
-        this.storePosts.save(post);
+    public Post savePost(Post post) {
+        return this.storePosts.save(post);
     }
 
-    public void saveComment(int id, Comment comment) {
-        this.storeComments.save(id, comment);
+    public Comment saveComment(Comment comment) {
+        return this.storeComments.save(comment);
+    }
+
+    public User saveUser(User user) {
+        return this.storeUsers.save(user);
+    }
+
+    public List<User> getAllUsers() {
+        List<User> rsl = new ArrayList<>();
+        this.storeUsers.findAll().forEach(rsl::add);
+        return rsl;
+    }
+
+    public List<Post> getAllPosts() {
+        List<Post> rsl = new ArrayList<>();
+        this.storePosts.findAll().forEach(rsl::add);
+        return rsl;
     }
 
     public List<Comment> getAllCommentsById(int id) {
-        return this.storeComments.getAllCommentsById(id);
+        List<Comment> rsl = new LinkedList<>();
+        this.storeComments.findAllCommentById(id).forEach(rsl::add);
+        return rsl;
     }
 }

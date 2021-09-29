@@ -28,7 +28,7 @@
                     <label class="form-control" id="name"><c:out value="${post.name}"/></label>
                 </div>
                 <div class="form-group">
-                    <label class="form-control" id="desc"><c:out value="${post.desc}"/></label>
+                    <label class="form-control" id="description"><c:out value="${post.description}"/></label>
                 </div>
                 <c:forEach var="comment" items="${comments}">
                 <div class="form-group">
@@ -40,7 +40,7 @@
         <form action="<c:url value='/comment?id=${post.id}'/>" method='POST'>
         <div class="form-group">
             <label class="form-control">Комментировать</label>
-            <input type="text" class="form-control" name="comment" placeholder="...">
+            <input type="text" class="form-control" name="comment" value="">
             <input type="text" class="form-control" name="author" hidden>
         </div>
             <div class="form-group">

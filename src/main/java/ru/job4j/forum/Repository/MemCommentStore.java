@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Repository
+//@Repository
 public class MemCommentStore {
     private final HashMap<Integer, List<Comment>> mem = new HashMap<>();
     private static final AtomicInteger COUNT = new AtomicInteger(0);
