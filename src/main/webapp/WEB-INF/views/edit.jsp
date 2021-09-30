@@ -19,7 +19,7 @@
     <li><a href="<c:url value='/login'/>">Авторизация</a></li>
     <li><a href="<c:url value='/create'/>">Добавить тему</a></li>
 
-    Login as : ${user.name}
+    Login as : ${user.username}
     <a href="<c:url value='/logout'/>">Exit</a>
 </div>
 <div class="container">

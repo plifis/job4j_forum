@@ -1,7 +1,9 @@
 package ru.job4j.forum.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.Repository.*;
+import ru.job4j.forum.model.Authority;
 import ru.job4j.forum.model.Comment;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.model.User;
@@ -15,21 +17,30 @@ public class PostService {
     private final PostRepository storePosts;
     private final CommentRepository storeComments;
     private final UserRepository storeUsers;
+    private final AuthorityRepository storeAuthorities;
+    private final PasswordEncoder encoder;
 
 
-    public PostService(UserRepository storeUsers, PostRepository storePosts, CommentRepository storeComments) {
+    public PostService(UserRepository storeUsers, PostRepository storePosts, CommentRepository storeComments,
+                       AuthorityRepository storeAuthorities, PasswordEncoder encoder) {
         this.storePosts = storePosts;
         this.storeUsers = storeUsers;
         this.storeComments = storeComments;
+        this.storeAuthorities = storeAuthorities;
+        this.encoder = encoder;
     }
 
 
     public User findUserByName(String name) {
-        return this.storeUsers.findUserByName(name);
+        return this.storeUsers.findUserByUsername(name);
     }
 
     public Post findPostById(int id) {
         return this.storePosts.findById(id).get();
+    }
+
+    public Authority findAuthorityByRole(String role) {
+        return this.storeAuthorities.findByAuthority(role);
     }
 
     public Post savePost(Post post) {
@@ -60,5 +71,9 @@ public class PostService {
         List<Comment> rsl = new LinkedList<>();
         this.storeComments.findAllCommentById(id).forEach(rsl::add);
         return rsl;
+    }
+
+    public String encode(CharSequence password) {
+        return this.encoder.encode(password);
     }
 }

@@ -1,11 +1,9 @@
 package ru.job4j.forum.Repository;
 
-import org.springframework.stereotype.Repository;
 import ru.job4j.forum.model.User;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -19,7 +17,7 @@ public class MemUserStore {
 
     public User findUserByUsername(String name) {
         for (User temp : this.mem.values()) {
-            if (temp.getName().equals(name)) {
+            if (temp.getUsername().equals(name)) {
                 return temp;
             }
         }

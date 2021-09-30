@@ -6,9 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.job4j.forum.Repository.MemUserStore;
-import ru.job4j.forum.Repository.PostRepository;
-import ru.job4j.forum.Repository.UserRepository;
 import ru.job4j.forum.model.User;
 import ru.job4j.forum.service.PostService;
 
@@ -23,15 +20,16 @@ public class RegControl {
     @PostMapping("/reg")
     public String save(@ModelAttribute User user,
                        Model model) {
-        if (service.findUserByName(user.getName()) != null) {
+        if (service.findUserByName(user.getUsername()) != null) {
             String errorMessage = "А user with this name is already registered.";
             model.addAttribute("errorMessage", errorMessage);
             return "reg";
-        } else {
-            user.setPassword(user.getPassword());
-            service.saveUser(user);
-            return "redirect:/login";
         }
+        user.setEnabled(true);
+        user.setPassword(this.service.encode(user.getPassword()));
+        user.setAuthority(this.service.findAuthorityByRole("ROLE_USER"));
+        service.saveUser(user);
+        return "redirect:/login";
     }
 
     @GetMapping("/reg")

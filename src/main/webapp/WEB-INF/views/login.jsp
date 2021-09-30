@@ -30,9 +30,9 @@
     <div class="container">
         <form name="login" action="<c:url value='/login'/>" method="POST">
             <div class="form-group row">
-                <label for="name" class="col-sm-6 col-form-label">Login</label>
+                <label for="username" class="col-sm-6 col-form-label">Login</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Name">
                 </div>
             </div>
             <div class="form-group row">

@@ -17,7 +17,7 @@
 <body>
 <div class="container">
     <a href="<c:url value='/login'/>">Авторизация</a>
-    Login as : ${user.name}
+    Login as : ${user.username}
     <a href="<c:url value='/logout'/>">Exit</a>
 </div>
 <div class="container">

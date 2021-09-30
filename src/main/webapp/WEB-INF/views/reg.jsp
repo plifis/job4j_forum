@@ -31,9 +31,9 @@
     <div class="container">
         <form action="<c:url value='/reg'/>" method="post">
             <div class="form-group row">
-                <label for="name" class="col-sm-6 col-form-label">Name</label>
+                <label for="username" class="col-sm-6 col-form-label">Name</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Name">
                 </div>
             </div>
             <div class="form-group row">
