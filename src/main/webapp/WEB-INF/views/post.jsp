@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <td><label class="form-control" id="text"><c:out value="${comment.comment}"/></label>
                     <label class="form-control" id="user">Автор: <c:out value="${comment.author}"/></label>
-                    <label class="form-control" id="created">Дата: <c:out value="${comment.created}"/></label></td>
+                    <label class="form-control" id="created">Дата: <c:out value="${comment.created.time}"/></label></td>
                 </div>
                 </c:forEach>
         <form action="<c:url value='/comment?id=${post.id}'/>" method='POST'>

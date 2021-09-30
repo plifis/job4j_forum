@@ -51,14 +51,18 @@ public class Comment {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Comment comment1 = (Comment) o;
-        return id == comment1.id && Objects.equals(comment, comment1.comment) && Objects.equals(author, comment1.author) && Objects.equals(created, comment1.created);
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Comment comment = (Comment) o;
+        return id == comment.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, comment, author, created);
+        return Objects.hash(id);
     }
 }
