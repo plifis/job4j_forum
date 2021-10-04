@@ -1,10 +1,15 @@
 package ru.job4j.forum.control;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,5 +72,18 @@ public class PostControlTest {
                     .andDo(print())
                     .andExpect(status().isOk())
                     .andExpect(view().name("/create"));
+    }
+
+    @Test
+    @WithMockUser
+    public void shouldReturnRedirect() throws Exception {
+        this.mockMvc.perform(post("/save")
+             .param("id", "1")
+                .param("name", "Продаю ладу Калину"))
+                .andDo(print())
+                .andExpect(status().is3xxRedirection());
+        ArgumentCaptor<Post> captor = ArgumentCaptor.forClass(Post.class);
+        verify(service).savePost(captor.capture());
+        assertThat(captor.getValue().getName(), is("Продаю ладу Калину"));
     }
 }

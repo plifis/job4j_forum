@@ -1,6 +1,5 @@
 package ru.job4j.forum.control;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +22,7 @@ public class RegControl {
         if (service.findUserByName(user.getUsername()) != null) {
             String errorMessage = "А user with this name is already registered.";
             model.addAttribute("errorMessage", errorMessage);
-            return "reg";
+            return "/reg";
         }
         user.setEnabled(true);
         user.setPassword(this.service.encode(user.getPassword()));
