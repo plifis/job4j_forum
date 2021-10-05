@@ -37,7 +37,7 @@ public class IndexControlTest {
         this.mockMvc.perform(get("/index"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(view().name("index"));
+                .andExpect(view().name("/index"));
     }
 
     @Test
@@ -47,7 +47,7 @@ public class IndexControlTest {
         Mockito.when(service.getAllPosts()).thenReturn(list);
         mockMvc.perform(get("/index"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("index"))
+                .andExpect(view().name("/index"))
                 .andExpect(MockMvcResultMatchers.model().attribute("posts", list));
 
     }
