@@ -25,7 +25,6 @@ import java.util.List;
 @SpringBootTest(classes = Main.class)
 @AutoConfigureMockMvc
 public class IndexControlTest {
-
     @Autowired
     private MockMvc mockMvc;
     @MockBean
@@ -40,11 +39,11 @@ public class IndexControlTest {
                 .andExpect(view().name("/index"));
     }
 
-
     @Test
     @WithMockUser
     public void shouldReturnAllPosts() throws Exception {
-        List<Post> list = List.of(Post.of(1, "Продаю ладу Калину"), Post.of(2, "Ищу работу"));
+        List<Post> list = List.of(Post.of(1, "Продаю ладу Калину"),
+                Post.of(2, "Ищу работу"));
         Mockito.when(service.getAllPosts()).thenReturn(list);
         mockMvc.perform(get("/index"))
                 .andExpect(status().isOk())
