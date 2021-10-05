@@ -49,8 +49,5 @@ public class IndexControlTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("/index"))
                 .andExpect(MockMvcResultMatchers.model().attribute("posts", list));
-
     }
-
-
 }
