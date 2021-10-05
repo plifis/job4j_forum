@@ -40,6 +40,7 @@ public class IndexControlTest {
                 .andExpect(view().name("/index"));
     }
 
+
     @Test
     @WithMockUser
     public void shouldReturnAllPosts() throws Exception {
