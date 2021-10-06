@@ -1,6 +1,5 @@
 package ru.job4j.forum;
 
-
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +15,6 @@ public class Main extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(Main.class);
     }
-
     @Bean
     public SpringLiquibase liquibase(DataSource ds) {
         SpringLiquibase liquibase = new SpringLiquibase();
@@ -24,7 +22,6 @@ public class Main extends SpringBootServletInitializer {
         liquibase.setDataSource(ds);
         return liquibase;
     }
-
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
