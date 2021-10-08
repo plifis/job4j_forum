@@ -9,7 +9,7 @@ after_success:
 - bash <(curl -s https://codecov.io/bash)
 notifications:
   email:
-    recipients: "-nikich85@mail.ru"
+    recipients: "-nikich85@inbox.ru"
     on_success: never
     on_failure: always
 deploy:
