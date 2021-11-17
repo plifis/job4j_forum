@@ -33,7 +33,7 @@
     <c:forEach var="comment" items="${comments}">
         <div class="media-body">
             <div class="mar-btm">
-            <a href="#" class="btn-link text-semibold media-heading box-inline">Автор: <c:out value="${comment.author.}"/></a>
+            <a href="#" class="btn-link text-semibold media-heading box-inline">Автор: <c:out value="${comment.author}"/></a>
                 <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i> Дата: <c:out value="${comment.created.time}"/></p>
             </div>
             <p><c:out value="${comment.comment}"/></p>
