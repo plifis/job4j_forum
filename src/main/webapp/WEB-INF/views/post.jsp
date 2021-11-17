@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="UTF-8" session="true"%>
+    <%@ page language="java" pageEncoding="UTF-8" session="true"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,29 +24,32 @@
     <a href="<c:url value='/logout'/>">Exit</a>
 </div>
 <div class="container">
-                <div class="form-group">
-                    <label class="form-control" id="name"><c:out value="${post.name}"/></label>
-                </div>
-                <div class="form-group">
-                    <label class="form-control" id="description"><c:out value="${post.description}"/></label>
-                </div>
-                <c:forEach var="comment" items="${comments}">
-                <div class="form-group">
-                    <td><label class="form-control" id="text"><c:out value="${comment.comment}"/></label>
-                    <label class="form-control" id="user">Автор: <c:out value="${comment.author}"/></label>
-                    <label class="form-control" id="created">Дата: <c:out value="${comment.created.time}"/></label></td>
-                </div>
-                </c:forEach>
-        <form action="<c:url value='/comment?id=${post.id}'/>" method='POST'>
+    <div class="media-block">
+        <a class="media-left" id="name"><c:out value="${post.name}"/></a>
+    </div>
+    <div class="page-header">
+        <h1><c:out value="${post.description}"/></h1>
+    </div>
+    <c:forEach var="comment" items="${comments}">
+        <div class="media-body">
+            <div class="mar-btm">
+            <a href="#" class="btn-link text-semibold media-heading box-inline">Автор: <c:out value="${comment.author.}"/></a>
+                <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i> Дата: <c:out value="${comment.created.time}"/></p>
+            </div>
+            <p><c:out value="${comment.comment}"/></p>
+
+        </div>
+    </c:forEach>
+    <form action="<c:url value='/comment?id=${post.id}'/>" method='POST'>
         <div class="form-group">
             <label class="form-control">Комментировать</label>
             <input type="text" class="form-control" name="comment" value="">
             <input type="text" class="form-control" name="author" hidden>
         </div>
-            <div class="form-group">
+        <div class="form-group">
             <td colspan='2'><input name="submit" type="submit" value="Сохранить" /></td>
-            </div>
-        </form>
+        </div>
+    </form>
 </div>
 
 </body>
